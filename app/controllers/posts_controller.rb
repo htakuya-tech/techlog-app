@@ -14,7 +14,7 @@ class PostsController < ApplicationController
  
     if @post.save
       flash[:notice] = '投稿しました' # 成功時のフラッシュメッセージ
-      redirect_to root_path # 一時的にトップページへリダイレクト(後に修正)
+      redirect_to root_path # 一時的にトップページへリダイレクト
     else
       flash[:alert] = '投稿に失敗しました' # 失敗時のフラッシュメッセージ
       render :new # 投稿画面を再表示
@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find_by(id: params[:id])
   end
 
   def destroy
